@@ -4,10 +4,10 @@ require 'config.php';
 require 'session.php';
 $Select = $_POST['select'];
 $Datum = $_POST['datum'];
-$User_ID = $_SESSION['userid'];
+$User_ID = $_SESSION['ID_Gebruiker'];
 $Foto1 = $_FILES['Foto1']; 
 $Naam1 = $Foto1['name'];
-
+$date = date('Y-m-d');
 if (isset($Foto1)){
 
     $file_name =  $Foto1['name'];
@@ -25,7 +25,7 @@ if (isset($Foto1)){
 }
 
 
-$query = "INSERT INTO `FOTOS` VALUES (NULL,'$Naam1','$User_ID','$Datum','$Select')";
+$query = "INSERT INTO `FOTOS` VALUES (NULL,'$Naam1','$User_ID','$date','$Select')";
 
 
 
@@ -37,5 +37,6 @@ if (mysqli_query($mysqli ,$query)) {
 }
 else {
     echo 'Try again, Remove the quote signs';
+    echo $query;
 }
 ?>
